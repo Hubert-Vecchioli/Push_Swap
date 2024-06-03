@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 12:36:44 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/03 12:46:39 by hvecchio         ###   ########.fr       */
+/*   Created: 2024/05/15 16:47:13 by hvecchio          #+#    #+#             */
+/*   Updated: 2024/05/20 01:14:24 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <stdlib.h>
-
-typedef struct s_stack_elem
+int	ft_strncmp(const char *str1, const char *str2, size_t n)
 {
-	int				value;
-	int				index;
-	struct s_clist	*next;
-	struct s_clist	*prev;
-}	t_stack_elem;
+	size_t	i;
 
-typedef struct s_stack
-{
-	t_stack_elem	*stack_elem;
-	int				size;
-}	t_stack;
-
-#endif
+	i = 0;
+	if (n < 1)
+		return (0);
+	while (str1[i] && str2[i] && str1[i] == str2[i] && i < (n - 1))
+	{
+		i++;
+	}
+	return ((int)((unsigned char)str1[i] - (unsigned char)str2[i]));
+}

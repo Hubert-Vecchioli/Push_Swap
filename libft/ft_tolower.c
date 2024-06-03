@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 12:36:44 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/03 12:46:39 by hvecchio         ###   ########.fr       */
+/*   Created: 2024/05/15 16:19:25 by hvecchio          #+#    #+#             */
+/*   Updated: 2024/05/16 15:05:06 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <stdlib.h>
-
-typedef struct s_stack_elem
+int	ft_tolower(int c)
 {
-	int				value;
-	int				index;
-	struct s_clist	*next;
-	struct s_clist	*prev;
-}	t_stack_elem;
-
-typedef struct s_stack
-{
-	t_stack_elem	*stack_elem;
-	int				size;
-}	t_stack;
-
-#endif
+	if (c >= 'A' && c <= 'Z')
+		return (c + 32);
+	return (c);
+}

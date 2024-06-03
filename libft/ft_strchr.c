@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 12:36:44 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/03 12:46:39 by hvecchio         ###   ########.fr       */
+/*   Created: 2024/05/18 01:57:49 by hvecchio          #+#    #+#             */
+/*   Updated: 2024/05/18 11:36:43 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <stdlib.h>
-
-typedef struct s_stack_elem
+char	*ft_strchr(const char *str, int to_find)
 {
-	int				value;
-	int				index;
-	struct s_clist	*next;
-	struct s_clist	*prev;
-}	t_stack_elem;
+	int	i;
 
-typedef struct s_stack
-{
-	t_stack_elem	*stack_elem;
-	int				size;
-}	t_stack;
-
-#endif
+	i = 0;
+	while (str[i] != (char)to_find)
+	{
+		if (str[i] == '\0')
+			return ((char *) 0);
+		i++;
+	}
+	return ((char *) &str[i]);
+}

@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_init.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 15:41:43 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/03 13:02:02 by hvecchio         ###   ########.fr       */
+/*   Created: 2024/05/16 16:06:02 by hvecchio          #+#    #+#             */
+/*   Updated: 2024/05/19 13:39:28 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void ft_stack_init(t_stack *stack_a, t_stack *stack_b)
+char	*ft_substr(char const *s, unsigned int start, size_t n)
 {
-	(*stack_a).stack_elem = NULL;
-	(*stack_a).size = 0;
-	(*stack_b).stack_elem = NULL;
-	(*stack_b).size = 0;
-}
+	char		*copy_str;
+	size_t		i;
 
-void ft_stack_elem_init(int nbr)
-{
-	t_stack_elem	*new;
-	
-	new = malloc(sizeof(t_stack_elem));
-	if (new == NULL)
+	if (!s)
 		return (NULL);
-	
-	(*new).value = nbr;
-	(*new).index = 0;
-	(*new).next	= new;
-	(*new).prev = new;
-	return (new); 
+	if (ft_strlen(s) < start)
+		n = 0;
+	if (ft_strlen(s) - start < n)
+		n = ft_strlen(s) - start;
+	copy_str = malloc((n + 1) * sizeof(char));
+	if (copy_str == NULL)
+		return (0);
+	i = 0;
+	while (i < n)
+	{
+		copy_str[i] = s[start];
+		i++;
+		start++;
+	}
+	copy_str[i] = 0;
+	return (copy_str);
 }

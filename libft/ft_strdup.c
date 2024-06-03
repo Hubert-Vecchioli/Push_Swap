@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_init.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 15:41:43 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/03 13:02:02 by hvecchio         ###   ########.fr       */
+/*   Created: 2024/05/16 15:56:15 by hvecchio          #+#    #+#             */
+/*   Updated: 2024/05/19 22:40:20 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void ft_stack_init(t_stack *stack_a, t_stack *stack_b)
+char	*ft_strdup(const char *src)
 {
-	(*stack_a).stack_elem = NULL;
-	(*stack_a).size = 0;
-	(*stack_b).stack_elem = NULL;
-	(*stack_b).size = 0;
-}
+	char	*copy_str;
+	int		i;
 
-void ft_stack_elem_init(int nbr)
-{
-	t_stack_elem	*new;
-	
-	new = malloc(sizeof(t_stack_elem));
-	if (new == NULL)
+	copy_str = (malloc((ft_strlen(src) + 1) * sizeof(char)));
+	if (copy_str == NULL)
 		return (NULL);
-	
-	(*new).value = nbr;
-	(*new).index = 0;
-	(*new).next	= new;
-	(*new).prev = new;
-	return (new); 
+	i = 0;
+	while (src[i])
+	{
+		copy_str[i] = src[i];
+		i++;
+	}
+	copy_str[i] = 0;
+	return (copy_str);
 }

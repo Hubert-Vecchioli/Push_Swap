@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_init.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 15:41:43 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/03 13:02:02 by hvecchio         ###   ########.fr       */
+/*   Created: 2024/05/19 04:18:21 by hvecchio          #+#    #+#             */
+/*   Updated: 2024/05/19 13:38:34 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void ft_stack_init(t_stack *stack_a, t_stack *stack_b)
+t_list	*ft_lstnew(void *content)
 {
-	(*stack_a).stack_elem = NULL;
-	(*stack_a).size = 0;
-	(*stack_b).stack_elem = NULL;
-	(*stack_b).size = 0;
-}
+	t_list	*lst;
 
-void ft_stack_elem_init(int nbr)
-{
-	t_stack_elem	*new;
-	
-	new = malloc(sizeof(t_stack_elem));
-	if (new == NULL)
+	lst = malloc(sizeof(t_list));
+	if (!lst)
 		return (NULL);
-	
-	(*new).value = nbr;
-	(*new).index = 0;
-	(*new).next	= new;
-	(*new).prev = new;
-	return (new); 
+	(*lst).content = content;
+	(*lst).next = NULL;
+	return (lst);
 }

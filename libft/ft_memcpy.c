@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 12:36:44 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/03 12:46:39 by hvecchio         ###   ########.fr       */
+/*   Created: 2024/05/15 09:45:27 by hvecchio          #+#    #+#             */
+/*   Updated: 2024/05/17 17:20:46 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <stdlib.h>
-
-typedef struct s_stack_elem
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	int				value;
-	int				index;
-	struct s_clist	*next;
-	struct s_clist	*prev;
-}	t_stack_elem;
+	size_t	i;
 
-typedef struct s_stack
-{
-	t_stack_elem	*stack_elem;
-	int				size;
-}	t_stack;
-
-#endif
+	if (dest == 0 && src == 0)
+		return (dest);
+	i = 0;
+	while (i < n)
+	{
+		((char *)dest)[i] = ((char *)src)[i];
+		i++;
+	}
+	return (dest);
+}

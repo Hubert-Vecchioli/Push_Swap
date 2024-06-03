@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 12:36:44 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/03 12:46:39 by hvecchio         ###   ########.fr       */
+/*   Created: 2024/05/15 15:11:57 by hvecchio          #+#    #+#             */
+/*   Updated: 2024/05/20 00:44:51 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <stdlib.h>
-
-typedef struct s_stack_elem
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	int				value;
-	int				index;
-	struct s_clist	*next;
-	struct s_clist	*prev;
-}	t_stack_elem;
+	size_t	i;
 
-typedef struct s_stack
-{
-	t_stack_elem	*stack_elem;
-	int				size;
-}	t_stack;
-
-#endif
+	i = 0;
+	if (size < 1)
+		return (ft_strlen(src));
+	while (src[i] && i < (size - 1))
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = 0;
+	return (ft_strlen(src));
+}

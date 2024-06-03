@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_init.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 15:41:43 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/03 13:02:02 by hvecchio         ###   ########.fr       */
+/*   Created: 2024/05/18 12:41:16 by hvecchio          #+#    #+#             */
+/*   Updated: 2024/05/19 13:39:46 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void ft_stack_init(t_stack *stack_a, t_stack *stack_b)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	(*stack_a).stack_elem = NULL;
-	(*stack_a).size = 0;
-	(*stack_b).stack_elem = NULL;
-	(*stack_b).size = 0;
-}
+	size_t	i;
+	char	*result;
 
-void ft_stack_elem_init(int nbr)
-{
-	t_stack_elem	*new;
-	
-	new = malloc(sizeof(t_stack_elem));
-	if (new == NULL)
+	if (!s ||!f)
 		return (NULL);
-	
-	(*new).value = nbr;
-	(*new).index = 0;
-	(*new).next	= new;
-	(*new).prev = new;
-	return (new); 
+	result = malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (result == NULL)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		result[i] = f(i, s[i]);
+		i++;
+	}
+	result[i] = 0;
+	return (result);
 }
