@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 05:24:29 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/04 05:42:34 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/04 14:19:54 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int	ft_is_sorted(t_stack *stack_a)
 	head = (*stack_a).stack_elem;
 	if (!head || !*head)
 		return (0);
-	while ((*head).next != (*stack_a).stack_elem)
+	while (head->next != stack_a->stack_elem)
 	{
-		if ((*head).value > (*(*head).next).value)
+		if (head->value > head->next->value)
 			return (0);
-		head = (*head).next;
+		head = head->next 
 	}
 	return (1);
 }

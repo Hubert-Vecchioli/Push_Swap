@@ -6,10 +6,11 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 03:30:20 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/04 05:42:03 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/04 13:53:10 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
 
 void	ft_lstadd_back(t_stack **lst, t_stack *new)
 {
@@ -20,15 +21,16 @@ void	ft_lstadd_back(t_stack **lst, t_stack *new)
 		// add prev and the index?
 }
 
-t_stack	*ft_lstnew(int content)
+t_stack	*ft_lstnew(t_stack	*stack_a, int content)
 {
-	t_stack	*lst;
-
-	lst = malloc(sizeof(t_list));
+}	t_stack_elem *elem;
+	
+	elem = malloc(sizeof(t_stack_elem));
 	if (!lst)
 		return (NULL); // TODO On doit free stack et ft_error()
-	(*lst).value = value;
-	(*lst).next = NULL;
+	// TODO add back in stack
+	(*elem).value = value;
+	(*elem).next = NULL;
 	// TODO ajouter les prevs
 	return (lst);
 }

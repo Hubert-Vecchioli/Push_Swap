@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 12:20:52 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/04 05:11:01 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/04 14:27:16 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void ft_parse(int argc, char **argv, t_stack *stack_a)
 
 	i = 0;
 	if (argv == 1)
-		ft_error();
+		exit(0);// Double check si c est le bon comportement
 	if (argc == 2)
 		ft_parse_quoted_str(argv, stack_a);
 	else
@@ -44,7 +44,7 @@ void ft_parse_quoted_str(char **argv, t_stack *stack_a)
 	ft_free_split(buffer, i);
 }
 
-int	ft_atoi_with_errors(const char *str)
+int	ft_atoi_with_errors(char *str)
 {
 	int		i;
 	int		sign;
@@ -68,24 +68,29 @@ int	ft_atoi_with_errors(const char *str)
 		res = res * 10 + str[i++] - '0';
 	}
 	if ((sign * res) > 2147483647 ||(sign * res) < -2147483648) // a double check
-		ft_error()
+		ft_error();
 	return (sign * res);
 }
 
 void	ft_duplicate_review(t_stack *stack_a)
 {
-	t_stack	*tmp;
+	t_stack_elem	*head;
+	t_stack_elem	*tmp;
+	int				i;
 
-	while (stack_a)
+	head = stack_a->stack_elem;
+	i = 0;
+	while (i < stack_a->size)
 	{
-		tmp = (*stack_a).next;
-		while (tmp)
+		tmp = head->next;
+		while (tmp != stack_a->stack_elem)
 		{
-			if ((*stack_a).value == (*tmp).value)
+			if (tmp->value == head->value)
 				ft_error();
 			tmp = (*tmp).next;
 		}
-		stack_a = (*stack_a).next;
+		head = head->next;
+		i++;
 	}
 }
 
