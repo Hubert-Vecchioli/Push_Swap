@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 05:24:29 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/04 14:19:54 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/04 15:15:32 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	ft_is_sorted(t_stack *stack_a)
 
 void ft_sort(t_stack *stack_a, t_stack *stack_b)
 {
+	// cas 1 elem
+	// cas 2 elems
 	// cas 3 elements
 	// cas 3+ elements
 }
