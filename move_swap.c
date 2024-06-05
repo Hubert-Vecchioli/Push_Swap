@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   move_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 12:36:44 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/05 14:39:03 by hvecchio         ###   ########.fr       */
+/*   Created: 2024/06/05 14:58:10 by hvecchio          #+#    #+#             */
+/*   Updated: 2024/06/05 18:22:05 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include <stdlib.h>
-
-typedef struct s_stack_elem
+void	ft_swap(t_stack *stack)
 {
-	int					value;
-	struct t_stack_elem	*next;
-	struct t_stack_elem	*prev;
-}	t_stack_elem;
-
-typedef struct s_stack
-{
-	t_stack_elem	*stack_elem;
-	int				size;
-}	t_stack;
-
-#endif
+	int temp_elem_value;
+	int second_elem;
+	
+	if (stack->size < 2)
+		return ;
+	temp_elem_value = stack->stack_elem->value;
+	stack->stack_elem->value = stack->stack_elem->next->value;
+	stack->stack_elem->next->value = temp_elem_value;
+}

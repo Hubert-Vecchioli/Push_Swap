@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 12:20:52 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/05 11:15:52 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/05 14:46:33 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void ft_parse(int argc, char **argv, t_stack *stack_a)
 	else
 	{
 		while (i < argc)
-			ft_add_back(&stack_a, ft_stack_new(ft_atoi_with_errors(argv[i++]))); // a double check
+			ft_add_back(&stack_a->stack_elem, ft_elem_new(ft_atoi_with_errors(argv[i++]), stack_a)); // a double check
 	}
 	ft_duplicate_review(stack_a);
 }
@@ -37,11 +37,11 @@ void ft_parse_quoted_str(char **argv, t_stack *stack_a)
 	a = NULL;
 	i = 0;
 	buffer = ft_split(argv[1], 32);
-	if (bufer == NULL)
+	if (buffer == NULL)
 		ft_error();
 	while (buffer[i])
 	{
-		ft_add_back(&stack_a, ft_stack_new(ft_atoi_with_errors(buffer[i++]))); // a double check
+		ft_add_back(&stack_a, ft_elem_new(ft_atoi_with_errors(buffer[i++]), stack_a)); // a double check
 	}
 	ft_free_split(buffer, i);
 }
