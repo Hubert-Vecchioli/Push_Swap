@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 12:20:52 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/04 14:27:16 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/05 11:15:52 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ void ft_parse_quoted_str(char **argv, t_stack *stack_a)
 
 	a = NULL;
 	i = 0;
-	buffer = ft_split(argv[1], 32);// TODO: add a ft_error()
+	buffer = ft_split(argv[1], 32);
+	if (bufer == NULL)
+		ft_error();
 	while (buffer[i])
 	{
 		ft_add_back(&stack_a, ft_stack_new(ft_atoi_with_errors(buffer[i++]))); // a double check
@@ -67,7 +69,7 @@ int	ft_atoi_with_errors(char *str)
 			ft_error();
 		res = res * 10 + str[i++] - '0';
 	}
-	if ((sign * res) > 2147483647 ||(sign * res) < -2147483648) // a double check
+	if ((sign * res) > 2147483647 ||(sign * res) < -2147483648) // to test!
 		ft_error();
 	return (sign * res);
 }
