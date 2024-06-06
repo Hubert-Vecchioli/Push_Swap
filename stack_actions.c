@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 03:30:20 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/05 15:14:21 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/06 10:27:15 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,12 @@ t_stack	*ft_elem_last(t_stack_elem *elem)
 	if (elem == NULL)
 		return (NULL);
 	return (elem->prev);
+}
+
+void ft_stack_init(t_stack *stack_a, t_stack *stack_b)
+{
+	(*stack_a).stack_elem = NULL;
+	(*stack_a).size = 0;
+	(*stack_b).stack_elem = NULL;
+	(*stack_b).size = 0;
 }

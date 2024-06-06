@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:36:44 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/05 14:39:03 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/06 10:44:11 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
+
+typedef struct s_cheapest_move
+{
+	int	index;
+	int	nb_moves_needed;
+}	t_cheapest_move;
 
 typedef struct s_stack_elem
 {

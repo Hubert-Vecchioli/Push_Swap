@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 05:24:29 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/05 11:31:25 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/06 10:47:39 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,33 @@ void ft_sort_three_elem(t_stack *stack_a)
 	first_elem = stack_a->stack_elem->value
 	second_elem = stack_a->stack_elem->next->value
 	third_elem = stack_a->stack_elem->prev->value
-	
-	if (first_elem > second_elem && second_elem > third_elem)
-	// do nothing
-	else if (first_elem > third_elem && third_elem > second_elem)
-	else if (second_elem > first_elem && first_elem > third_elem)
-	else if (third_elem > second_elem && second_elem > first_elem)
-	else if (third_elem > first_elem && first_elem > second_elem)
-	else if (second_elem > third_elem && third_elem > first_elem)
+	if (first_elem < second_elem && second_elem < third_elem)// 123
+		return ;
+	else if (first_elem < third_elem && second_elem > third_elem)// 132
+	{
+		sa(stack_a, 1);
+		ra(stack_a, 1);
+	}
+	else if (first_elem > second_elem && first_elem < third_elem)// 213
+		sa(stack_a, 1);
+	else if (first_elem < second_elem && first_elem > third_elem)// 231
+		rra(stack_a, 1);
+	else if (third_elem > second_elem && third_elem < first_elem)// 312
+		ra(stack_a, 1);
+	else if (third_elem < second_elem && second_elem < first_elem)// 321
+	{
+		sa(stack_a, 1);
+		rra(stack_a, 1);
+	}
 }
 
 void ft_sort(t_stack *stack_a, t_stack *stack_b)
 {
-	// cas 1 elem
-	// cas 2 elems --> rotation meme pile car non sort
-	// cas 3 elements
-	// cas 3+ elements
+	if (stack_a->size == 1)
+	else if (stack_a->size == 2)
+		sa(stack_a, 1);
+	else if (stack_a->size == 3)
+		ft_sort_three_elem(stack_a);
+	else if (stack_a->size > 3)
+		ft_sort_large(stack_a, stack_b);
 }
