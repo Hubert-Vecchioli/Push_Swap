@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 10:46:09 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/06 11:20:38 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/06 16:02:22 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,53 +23,94 @@ void ft_sort_large(t_stack *stack_a, t_stack *stack_b)
 	while (stack_b->size)
 	{
 		ft_cheapest_move(stack_a, stack_b, cheapest_move);
-		ft_apply_cheapest_move(stack_a, stack_b, ccheapest_move);
+		ft_apply_cheapest_move(stack_a, stack_b);
 	}
+	
+	// get a min on top
 }
 
-void ft_cheapest_move(t_stack *stack_a, t_stack *stack_b, t_cheapest_move *cheapest_move)
+void ft_cheapest_move(t_stack *stack_a, t_stack *stack_b)
 {
-	int	i;
-	t_cheapest_move *temp;
-	t_cheapest_move *min;
+	ft_get_positions(stack_a);
+	ft_get_positions(stack_b);
+	ft_find_target_position(stack_a, stack_b);
+	ft_determine_costs(stack_a, stack_b);
+}
 
-	min->nb_moves_needed = ft_min_4(method_1,method_2,method_3,method_4)
-	min->index = stack_b->size - i
-	i = -1;
-	while (stack_b->size - ++i)
+void	ft_get_positions(t_stack *stack)
+{
+	t_stack_elem	*head;
+	int				i;
+
+	if (!stack || !stack->stack_elem)
+		return ;
+	i = 0;
+	head = stack->stack_elem;
+	while (stack->size > i)
 	{
-		temp->nb_moves_needed = ft_min_4(method_1,method_2,method_3,method_4)
-		temp->index = stack_b->size - i
-		if (temp->nb_moves_needed < min->nb_moves_needed)
-		{
-			min->index = temp->index
-			min->nb_moves_needed = temp->nb_moves_needed
-		}
+		head->position = i;
+		head = head->next;
+		i++;
 	}
-	cheapest_move->index = min->index
-	cheapest_move->nb_moves_needed = min->nb_moves_needed
 }
 
-void ft_apply_cheapest_move(t_stack *stack_a, t_stack *stack_b, t_cheapest_move cheapest_move)
+void	ft_find_target_position(t_stack *stack_a, t_stack *stack_b)
 {
-	if (method_1 == cheapest_move->nb_moves_needed)
-		method_1
-	else if (method_2 == cheapest_move->nb_moves_needed)
-		method_2
-	else if (method_3 == cheapest_move->nb_moves_needed)
-		method_3
-	else if (method_4 == cheapest_move->nb_moves_needed)
-		method_4
+	t_stack_elem	*head_b;
+	t_stack_elem	*head_a;
+	int				i;
+	int				j;
+
+	head_b = stack_b->stack;
+	i = 0;
+	while (i < stack_b->size)
+	{
+		head_a = stack_a->stack;
+		j = 0;
+		while (j < a->size)
+		{
+			if (head_a->value < head_b->value && head_a->next->value > head_b->value)
+				head_b->target_to_go_below_node = head_a->next;
+			if (head_a->value < head_b->value && head_a->next->value < head_b->value && head_a->value > head_a->next->value)
+				head_b->target_to_go_below_node = head_a->next;
+			if (head_a->value > head_b->value && head_a->next->value > head_b->value && head_a->value > head_a->next->value)
+				head_b->target_to_go_below_node = head_a->next;
+			head_a->next=head_a;
+			j++;
+		}
+		head_b = head_b->next;
+		i++;
+	}
 }
 
-int	ft_min_4(int a, int b, int c, int d)
+void	ft_determine_costs(t_stack *stack_a, t_stack *stack_b)
 {
-	if (a <= b && a <= c && a <= d)
-		return a;
-	if (b <= a && b <= c && b <= d)
-		return b;
-	if (c <= b && c <= a && c <= d)
-		return c;
-	if (d <= b && d <= c && d <= a)
-		return d;
+	t_stack_elem	*head_b;
+	int		i;
+
+	head_b = stack_b->stack_elem;
+	i = 0;
+	while (i < stack_b->size)
+	{
+		if (head_b->position < stack_b->size / 2)
+			head_b->move_cost = head_b->position;
+		else 
+			head_b->move_cost = stack_b->size - (head_b->position);
+		if (head_b->target_node->position < stack_a->size / 2)
+			head_b->move_cost += head_b->target_node->position;
+		else
+			head_b->move_cost += stack_a->size - (head_b->target_node->position);
+		head_b->move_cost += 1
+		head_b = head_b->next;
+		i++;
+	}
+}
+
+void	ft_apply_cheapest_move(t_stack *stack_a, t_stack *stack_b)
+{
+	//get the cheapest
+	// get the common moves
+	// get the a unique moves
+	// get the b unique moves
+	// pa
 }

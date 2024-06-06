@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 14:58:05 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/06 10:32:40 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:53:33 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ft_push(t_stack *stack_src, t_stack *stack_dest)
 {
-	t_stack_elem temp_elem;
+	t_stack_elem *temp_elem;
 
 	temp_elem = stack_src->stack_elem;
-	if (!stack->stack_elem)
+	if (!stack_src->stack_elem)
 		return ;
 	if (stack_src->size == 1)
 	{
