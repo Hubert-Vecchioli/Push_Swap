@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 14:58:10 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/07 08:48:10 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/07 18:16:30 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_swap(t_stack *stack)
 {
-	int temp_elem_value;
-	
+	int	temp_elem_value;
+
 	if (!stack->stack_elem)
 		return ;
 	if (stack->size < 2)

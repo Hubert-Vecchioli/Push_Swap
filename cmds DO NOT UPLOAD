@@ -1,0 +1,5 @@
+arg=$(shuf -i 1-500 | tr "\n" " "); ./push_swap $arg | ./checker_linux $arg
+arg=$(shuf -i 0-10 | tr "\n" " "); valgrind ./push_swap $arg
+
+		if (!hb->target_to_go_below_node)
+			hb->target_to_go_below_node = stack_a->stack_elem;

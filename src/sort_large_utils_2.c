@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   sort_large_utils_2.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 12:36:07 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/07 19:55:41 by hvecchio         ###   ########.fr       */
+/*   Created: 2024/06/07 19:05:26 by hvecchio          #+#    #+#             */
+/*   Updated: 2024/06/07 19:10:34 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	ft_move_top_sb(t_stack *sb, t_stack_elem *cheap_e)
 {
-	ft_push_swap(argc, argv);
-	return (0);
+	while (sb->stack_elem != cheap_e)
+	{
+		if (cheap_e->position < sb->size / 2)
+			rb(sb, 1);
+		else
+			rrb(sb, 1);
+	}
 }
 
-void	ft_push_swap(int argc, char **argv)
+void	ft_move_top_sa(t_stack *sa, t_stack_elem *cheap_e)
 {
-	t_stack	stack_a;
-	t_stack	stack_b;
-
-	ft_stack_init(&stack_a, &stack_b);
-	ft_parse(argc, argv, &stack_a);
-	if (!ft_is_sorted(&stack_a))
-		ft_sort(&stack_a, &stack_b);
-	ft_free(&stack_a);
+	while (sa->stack_elem != cheap_e->target_below_node)
+	{
+		if (cheap_e->target_below_node->position < sa->size / 2)
+			ra(sa, 1);
+		else
+			rra(sa, 1);
+	}
 }

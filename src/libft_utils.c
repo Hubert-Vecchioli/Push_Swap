@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 00:09:17 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/07 07:26:34 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/07 18:15:03 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,27 +107,3 @@ char	**ft_split(char const *s, char c)
 	split[j] = 0;
 	return (split);
 }
-
-static void	ft_putchar_fd(char c, int fd)
-{
-	if (fd >= 0)
-		write(fd, &c, sizeof(char));
-}
-
-void	ft_putnbr_fd(int n, int fd)
-{
-	long	nb;
-
-	nb = n;
-	if (fd < 0)
-		return ;
-	if (nb < 0)
-	{
-		ft_putchar_fd('-', fd);
-		nb *= -1;
-	}
-	if (nb / 10 != 0)
-		ft_putnbr_fd(nb / 10, fd);
-	ft_putchar_fd(nb % 10 + '0', fd);
-}
-

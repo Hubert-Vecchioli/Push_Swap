@@ -6,47 +6,46 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 12:20:52 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/07 07:40:32 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/07 18:24:30 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_parse(int argc, char **argv, t_stack *stack_a)
+void	ft_parse(int ac, char **av, t_stack *stack_a)
 {
 	int		i;
 
 	i = 1;
-	if (argc == 1)
-		exit(0);// Double check si c est le bon comportement
-	if (argc == 2)
-		ft_parse_quoted_str(argv, stack_a);
+	if (ac == 1)
+		exit(0);
+	if (ac == 2)
+		ft_parse_quoted_str(av, stack_a);
 	else
 	{
-		while (i < argc)
+		while (i < ac)
 		{
-			ft_add_back(stack_a, ft_elem_new(ft_atoi_with_errors(argv[i++]), stack_a)); // a double check
+			ft_add_back(stack_a, ft_new_e(ft_atoi(av[i++], stack_a), stack_a));
 		}
 	}
 	ft_duplicate_review(stack_a);
 }
 
-void	ft_parse_quoted_str(char **argv, t_stack *stack_a)
+void	ft_parse_quoted_str(char **av, t_stack *stack_a)
 {
 	char	**buffer;
 	int		i;
 
 	i = 0;
-	buffer = ft_split(argv[1], ' ');
-
+	buffer = ft_split(av[1], ' ');
 	if (buffer == NULL)
 		ft_error();
 	while (buffer[i])
-		ft_add_back(stack_a, ft_elem_new(ft_atoi_with_errors(buffer[i++]), stack_a)); // a double check
+		ft_add_back(stack_a, ft_new_e(ft_atoi(buffer[i++], stack_a), stack_a));
 	ft_free_split(buffer, i);
 }
 
-int	ft_atoi_with_errors(char *str)
+int	ft_atoi(char *str, t_stack *stack_a)
 {
 	int		i;
 	int		sign;
@@ -66,11 +65,11 @@ int	ft_atoi_with_errors(char *str)
 	while (str[i])
 	{
 		if (str[i] < '0' || str[i] > '9')
-			ft_error();
+			return (ft_free(stack_a), ft_error(), 0);
 		res = res * 10 + str[i++] - '0';
 	}
-	if ((sign * res) > 2147483647 ||(sign * res) < -2147483648) // to test!
-		ft_error();
+	if ((sign * res) > 2147483647 || (sign * res) < -2147483648)
+		return (ft_free(stack_a), ft_error(), 0);
 	return (sign * res);
 }
 
@@ -88,7 +87,10 @@ void	ft_duplicate_review(t_stack *stack_a)
 		while (tmp != stack_a->stack_elem)
 		{
 			if (tmp->value == head->value)
+			{
+				ft_free(stack_a);
 				ft_error();
+			}
 			tmp = (*tmp).next;
 		}
 		head = head->next;
