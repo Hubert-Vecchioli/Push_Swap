@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 09:06:47 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/07 19:52:03 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/07 20:23:09 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,41 +25,41 @@ static int	ft_strcmp(const char *str1, const char *str2)
 	return ((int)((unsigned char)str1[i] - (unsigned char)str2[i]));
 }
 
-static int	ft_parse_instruct(t_stack *stack_a, t_stack *stack_b, char *instruction)
+static int	ft_parse_instruct(t_stack *a, t_stack *b, char *instruction)
 {
 	if (!ft_strcmp(instruction, "sa\n"))
-		sa(stack_a, 0);
+		sa(a, 0);
 	else if (!ft_strcmp(instruction, "sb\n"))
-		sb(stack_b, 0);
+		sb(b, 0);
 	else if (!ft_strcmp(instruction, "ss\n"))
-		ss(stack_a, stack_b, 0);
+		ss(a, b, 0);
 	else if (!ft_strcmp(instruction, "pa\n"))
-		pa(stack_a, stack_b, 0);
+		pa(a, b, 0);
 	else if (!ft_strcmp(instruction, "pb\n"))
-		pb(stack_a, stack_b, 0);
+		pb(a, b, 0);
 	else if (!ft_strcmp(instruction, "ra\n"))
-		ra(stack_a, 0);
+		ra(a, 0);
 	else if (!ft_strcmp(instruction, "rb\n"))
-		rb(stack_b, 0);
+		rb(b, 0);
 	else if (!ft_strcmp(instruction, "rr\n"))
-		rr(stack_a, stack_b, 0);
+		rr(a, b, 0);
 	else if (!ft_strcmp(instruction, "rra\n"))
-		rra(stack_a, 0);
+		rra(a, 0);
 	else if (!ft_strcmp(instruction, "rrb\n"))
-		rrb(stack_b, 0);
+		rrb(b, 0);
 	else if (!ft_strcmp(instruction, "rrr\n"))
-		rrr(stack_a, stack_b, 0);
+		rrr(a, b, 0);
 	else
 		return (0);
 	return (1);
 }
 
-static void	ft_clean_checker(t_stack *stack_a, t_stack *stack_b, char *line, int fd)
+static void	ft_clean_checker(t_stack *a, t_stack *b, char *line, int fd)
 {
 	free(line);
 	close(fd);
-	ft_free(stack_a);
-	ft_free(stack_b);
+	ft_free(a);
+	ft_free(b);
 	ft_error();
 }
 

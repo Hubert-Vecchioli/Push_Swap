@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 11:23:37 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/07 18:59:14 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/07 20:21:48 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	ft_free(t_stack *stack_a)
 	t_stack_elem	*temp;
 	t_stack_elem	*head;
 
-	head = stack_a->stack_elem->prev;
 	if (stack_a->stack_elem)
 	{
+		head = stack_a->stack_elem->prev;
 		while (stack_a->stack_elem != head)
 		{
 			stack_a->stack_elem->value = 0;
