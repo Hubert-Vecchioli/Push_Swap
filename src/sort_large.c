@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 10:46:09 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/07 08:08:50 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/07 09:23:04 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	ft_apply_cheapest_move(t_stack *stack_a, t_stack *stack_b)
 {
 	t_stack_elem *cheapest_elem;
 	
-	cheapest_elem = ft_find_cheapest_elem(stack_a, stack_b);
+	cheapest_elem = ft_find_cheapest_elem(stack_b);
 	if (cheapest_elem->position < stack_b->size / 2 && 
 		cheapest_elem->target_to_go_below_node->position < stack_a->size / 2)
 		while (stack_a->stack_elem != cheapest_elem->target_to_go_below_node

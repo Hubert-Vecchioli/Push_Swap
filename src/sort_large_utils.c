@@ -6,13 +6,13 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 13:50:34 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/07 00:30:28 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/07 08:47:30 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack_elem	*ft_find_cheapest_elem(t_stack *stack_a, t_stack *stack_b)
+t_stack_elem	*ft_find_cheapest_elem(t_stack *stack_b)
 {
 	t_stack_elem	*cheapest_to_move_b;
 	t_stack_elem	*temp;

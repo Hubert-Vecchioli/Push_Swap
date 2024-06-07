@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:36:44 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/07 07:23:38 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/07 08:47:56 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void			**ft_free_split(char **split, int pos);
 void			ft_duplicate_review(t_stack *stack_a);
 int				ft_is_sorted(t_stack *stack_a);
 int				ft_atoi_with_errors(char *str);
-t_stack_elem	*ft_find_cheapest_elem(t_stack *stack_a, t_stack *stack_b);
+t_stack_elem	*ft_find_cheapest_elem(t_stack *stack_b);
 t_stack_elem	*ft_min_elem(t_stack *stack_a);
 t_stack_elem	*ft_elem_new(int value, t_stack *stack_a);
 t_stack_elem	*ft_elem_last(t_stack_elem *elem);
