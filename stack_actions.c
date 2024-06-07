@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 03:30:20 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/06 10:27:15 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/07 01:42:54 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 void	ft_add_back(t_stack *stack, t_stack_elem *new_elem)
 {
 	if (!stack->stack_elem)
+	{
 		stack->stack_elem = new_elem;
+		stack->stack_elem->next = new_elem;
+		stack->stack_elem->prev = new_elem;
+	}
 	else
 	{
 		ft_elem_last(stack->stack_elem)->next = new_elem;
@@ -39,14 +43,14 @@ t_stack_elem	*ft_elem_new(int value, t_stack *stack_a)
 	return (elem);
 }
 
-t_stack	*ft_elem_last(t_stack_elem *elem)
+t_stack_elem	*ft_elem_last(t_stack_elem *elem)
 {
 	if (elem == NULL)
 		return (NULL);
 	return (elem->prev);
 }
 
-void ft_stack_init(t_stack *stack_a, t_stack *stack_b)
+void	ft_stack_init(t_stack *stack_a, t_stack *stack_b)
 {
 	(*stack_a).stack_elem = NULL;
 	(*stack_a).size = 0;

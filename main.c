@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/15 16:19:25 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/05/16 15:05:06 by hvecchio         ###   ########.fr       */
+/*   Created: 2024/05/31 12:36:07 by hvecchio          #+#    #+#             */
+/*   Updated: 2024/06/07 07:36:43 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int	ft_tolower(int c)
+int	main(int argc, char **argv)
 {
-	if (c >= 'A' && c <= 'Z')
-		return (c + 32);
-	return (c);
+	ft_push_swap(argc, argv);
+	return (0);
+}
+
+void	ft_push_swap(int argc, char **argv)
+{
+	t_stack stack_a;
+	t_stack	stack_b;
+
+	ft_stack_init(&stack_a, &stack_b);
+	ft_parse(argc, argv, &stack_a);
+	if (!ft_is_sorted(&stack_a))
+		ft_sort(&stack_a, &stack_b);
+	ft_free(&stack_a);
 }

@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   libft_utils_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/19 11:08:52 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/05/19 13:39:04 by hvecchio         ###   ########.fr       */
+/*   Created: 2024/06/07 00:16:55 by hvecchio          #+#    #+#             */
+/*   Updated: 2024/06/07 00:21:18 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+void	ft_putstr_fd(char *s, int fd)
 {
-	if (!f)
+	if (!s || fd < 0)
 		return ;
-	while (lst)
+	write(fd, s, ft_strlen(s));
+}
+
+size_t	ft_strlen(const char *str)
+{
+	size_t	lenght;
+
+	lenght = 0;
+	while (str[lenght])
 	{
-		f(lst->content);
-		lst = (*lst).next;
+		lenght++;
 	}
+	return (lenght);
 }

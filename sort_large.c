@@ -6,15 +6,15 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 10:46:09 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/06 16:02:22 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/07 08:08:50 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void ft_sort_large(t_stack *stack_a, t_stack *stack_b)
+void	ft_sort_large(t_stack *stack_a, t_stack *stack_b)
 {
-	t_cheapest_move *cheapest_move; 
+	t_stack_elem *stack_min_value_elem; 
 
 	while (stack_a->size > 3)
 		pb(stack_a, stack_b, 1);
@@ -22,20 +22,20 @@ void ft_sort_large(t_stack *stack_a, t_stack *stack_b)
 	
 	while (stack_b->size)
 	{
-		ft_cheapest_move(stack_a, stack_b, cheapest_move);
+		ft_get_positions(stack_a);
+		ft_get_positions(stack_b);
+		ft_find_target_position(stack_a, stack_b);
+		ft_determine_costs(stack_a, stack_b);
 		ft_apply_cheapest_move(stack_a, stack_b);
 	}
-	
-	// get a min on top
+	stack_min_value_elem = ft_min_elem(stack_a);
+	while (stack_a->stack_elem != stack_min_value_elem)
+		if (stack_min_value_elem->position < stack_a->size / 2)
+			ra(stack_a, 1);
+		else
+			rra(stack_a, 1);
 }
 
-void ft_cheapest_move(t_stack *stack_a, t_stack *stack_b)
-{
-	ft_get_positions(stack_a);
-	ft_get_positions(stack_b);
-	ft_find_target_position(stack_a, stack_b);
-	ft_determine_costs(stack_a, stack_b);
-}
 
 void	ft_get_positions(t_stack *stack)
 {
@@ -61,21 +61,23 @@ void	ft_find_target_position(t_stack *stack_a, t_stack *stack_b)
 	int				i;
 	int				j;
 
-	head_b = stack_b->stack;
+	head_b = stack_b->stack_elem;
 	i = 0;
 	while (i < stack_b->size)
 	{
-		head_a = stack_a->stack;
+		head_a = stack_a->stack_elem;
 		j = 0;
-		while (j < a->size)
+		while (j < stack_a->size)
 		{
 			if (head_a->value < head_b->value && head_a->next->value > head_b->value)
 				head_b->target_to_go_below_node = head_a->next;
-			if (head_a->value < head_b->value && head_a->next->value < head_b->value && head_a->value > head_a->next->value)
+			if (head_a->value < head_b->value && head_a->next->value < head_b->value
+				 && head_a->value > head_a->next->value)
 				head_b->target_to_go_below_node = head_a->next;
-			if (head_a->value > head_b->value && head_a->next->value > head_b->value && head_a->value > head_a->next->value)
+			if (head_a->value > head_b->value && head_a->next->value > head_b->value
+				 && head_a->value > head_a->next->value)
 				head_b->target_to_go_below_node = head_a->next;
-			head_a->next=head_a;
+			head_a=head_a->next;
 			j++;
 		}
 		head_b = head_b->next;
@@ -94,13 +96,12 @@ void	ft_determine_costs(t_stack *stack_a, t_stack *stack_b)
 	{
 		if (head_b->position < stack_b->size / 2)
 			head_b->move_cost = head_b->position;
-		else 
-			head_b->move_cost = stack_b->size - (head_b->position);
-		if (head_b->target_node->position < stack_a->size / 2)
-			head_b->move_cost += head_b->target_node->position;
 		else
-			head_b->move_cost += stack_a->size - (head_b->target_node->position);
-		head_b->move_cost += 1
+			head_b->move_cost = stack_b->size - (head_b->position);
+		if (head_b->target_to_go_below_node->position < stack_a->size / 2)
+			head_b->move_cost += head_b->target_to_go_below_node->position;
+		else
+			head_b->move_cost += stack_a->size - (head_b->target_to_go_below_node->position);
 		head_b = head_b->next;
 		i++;
 	}
@@ -108,9 +109,28 @@ void	ft_determine_costs(t_stack *stack_a, t_stack *stack_b)
 
 void	ft_apply_cheapest_move(t_stack *stack_a, t_stack *stack_b)
 {
-	//get the cheapest
-	// get the common moves
-	// get the a unique moves
-	// get the b unique moves
-	// pa
+	t_stack_elem *cheapest_elem;
+	
+	cheapest_elem = ft_find_cheapest_elem(stack_a, stack_b);
+	if (cheapest_elem->position < stack_b->size / 2 && 
+		cheapest_elem->target_to_go_below_node->position < stack_a->size / 2)
+		while (stack_a->stack_elem != cheapest_elem->target_to_go_below_node
+			&& stack_b->stack_elem != cheapest_elem)
+			rr(stack_a, stack_b, 1);
+	if (cheapest_elem->position >= stack_b->size / 2 && 
+		cheapest_elem->target_to_go_below_node->position >= stack_a->size / 2)
+		while (stack_a->stack_elem != cheapest_elem->target_to_go_below_node
+			&& stack_b->stack_elem != cheapest_elem)
+			rrr(stack_a, stack_b, 1);
+	while (stack_a->stack_elem != cheapest_elem->target_to_go_below_node)
+		if (cheapest_elem->target_to_go_below_node->position < stack_a->size / 2)
+			ra(stack_a, 1);
+		else
+			rra(stack_a, 1);
+	while (stack_b->stack_elem != cheapest_elem)
+		if (cheapest_elem->position < stack_b->size / 2)
+			rb(stack_b, 1);
+		else
+			rrb(stack_b, 1);
+	pa(stack_a, stack_b, 1);
 }
