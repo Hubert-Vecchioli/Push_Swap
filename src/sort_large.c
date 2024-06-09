@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 10:46:09 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/07 19:11:27 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:04:15 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,27 @@
 
 void	ft_sort_large(t_stack *stack_a, t_stack *stack_b)
 {
-	t_stack_elem	*stack_min_value_elem;
+	int				i;
 
+	i = 0;
 	ft_set_extrema(stack_a);
 	while (stack_a->size > 3)
 	{
 		if (stack_a->size > stack_a->max_size / 2
 			&& stack_a->stack_elem->value < (stack_a->max_value
-				- stack_a->min_value) / 2)
+				- stack_a->min_value) / 2 && i++ < stack_a->size)
 			ra(stack_a, 1);
 		else
+		{
 			pb(stack_a, stack_b, 1);
+		}
 	}
 	ft_sort_three_elem(stack_a);
 	while (stack_b->size)
 	{
 		ft_best_move_back(stack_a, stack_b);
 	}
-	stack_min_value_elem = ft_min_elem(stack_a);
-	while (stack_a->stack_elem != stack_min_value_elem)
-	{
-		if (stack_min_value_elem->position < stack_a->size / 2)
-			ra(stack_a, 1);
-		else
-			rra(stack_a, 1);
-	}
+	ft_get_min_on_top(stack_a);
 }
 
 void	ft_get_positions(t_stack *stack)

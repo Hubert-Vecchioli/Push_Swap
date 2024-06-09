@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:36:44 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/07 19:10:45 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:04:49 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,16 @@ void			ft_push(t_stack *stack_src, t_stack *stack_dest);
 void			pa(t_stack *stack_b, t_stack *stack_a, int print_move);
 void			pb(t_stack *stack_a, t_stack *stack_b, int print_move);
 void			ft_error(void);
-void			ft_free(t_stack *stack_a);
-void			**ft_free_split(char **split, int pos);
+void			ft_free(t_stack *stack_a, char **buffer);
+void			ft_free_split(char **split);
 void			ft_duplicate_review(t_stack *stack_a);
+void			ft_get_min_on_top(t_stack *stack_a);
 int				ft_is_sorted(t_stack *stack_a);
-int				ft_atoi(char *str, t_stack *stack_a);
+int				ft_atoi(char *str, t_stack *stack_a, char **buffer);
 t_stack_elem	*ft_find_cheapest_elem(t_stack *stack_b);
 t_stack_elem	*ft_min_elem(t_stack *stack_a);
 t_stack_elem	*ft_max_elem(t_stack *stack_a);
-t_stack_elem	*ft_new_e(int value, t_stack *stack_a);
+t_stack_elem	*ft_new_e(int value, t_stack *stack_a, char **buffer);
 t_stack_elem	*ft_elem_last(t_stack_elem *elem);
 char			**ft_split(char const *s, char c);
 void			ft_putstr_fd(char *s, int fd);

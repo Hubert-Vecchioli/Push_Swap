@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:36:07 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/07 19:55:41 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/09 17:38:54 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ void	ft_push_swap(int argc, char **argv)
 	ft_parse(argc, argv, &stack_a);
 	if (!ft_is_sorted(&stack_a))
 		ft_sort(&stack_a, &stack_b);
-	ft_free(&stack_a);
+	ft_free(&stack_a, NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 11:23:37 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/07 20:21:48 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/09 17:38:21 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_error(void)
 	exit(0);
 }
 
-void	ft_free(t_stack *stack_a)
+void	ft_free(t_stack *stack_a, char **buffer)
 {
 	t_stack_elem	*temp;
 	t_stack_elem	*head;
@@ -34,5 +34,23 @@ void	ft_free(t_stack *stack_a)
 			stack_a->stack_elem = temp;
 		}
 		free(head);
+	}
+	if (buffer)
+		ft_free_split(buffer);
+}
+
+void	ft_free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	if (split)
+	{
+		while (split[i])
+		{
+			free(split[i]);
+			i++;
+		}
+		free(split);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 03:30:20 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/07 18:28:26 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/09 17:18:39 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ void	ft_add_back(t_stack *stack, t_stack_elem *new_elem)
 	stack->size += 1;
 }
 
-t_stack_elem	*ft_new_e(int value, t_stack *stack_a)
+t_stack_elem	*ft_new_e(int value, t_stack *stack_a, char **buffer)
 {
 	t_stack_elem	*elem;
 
 	elem = malloc(sizeof(t_stack_elem));
 	if (!elem)
-		return (ft_free(stack_a), ft_error(), NULL);
+		return (ft_free(stack_a, buffer), ft_error(), NULL);
 	elem->value = value;
 	elem->next = elem;
 	elem->prev = elem;

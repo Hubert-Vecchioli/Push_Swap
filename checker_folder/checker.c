@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 09:06:47 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/07 20:23:09 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:09:34 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ static void	ft_clean_checker(t_stack *a, t_stack *b, char *line, int fd)
 {
 	free(line);
 	close(fd);
-	ft_free(a);
-	ft_free(b);
+	ft_free(a, NULL);
+	ft_free(b, NULL);
 	ft_error();
 }
 
@@ -88,6 +88,6 @@ int	main(int argc, char **argv)
 	else
 		ft_putstr_fd("OK\n", 2);
 	close(STDIN_FILENO);
-	ft_free(&stack_a);
-	ft_free(&stack_b);
+	ft_free(&stack_a, NULL);
+	ft_free(&stack_b, NULL);
 }

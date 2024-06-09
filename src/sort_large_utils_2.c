@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 19:05:26 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/07 19:10:34 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:05:02 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,19 @@ void	ft_move_top_sa(t_stack *sa, t_stack_elem *cheap_e)
 			ra(sa, 1);
 		else
 			rra(sa, 1);
+	}
+}
+
+void	ft_get_min_on_top(t_stack *stack_a)
+{
+	t_stack_elem	*stack_min_value_elem;
+
+	stack_min_value_elem = ft_min_elem(stack_a);
+	while (stack_a->stack_elem != stack_min_value_elem)
+	{
+		if (stack_min_value_elem->position < stack_a->size / 2)
+			ra(stack_a, 1);
+		else
+			rra(stack_a, 1);
 	}
 }

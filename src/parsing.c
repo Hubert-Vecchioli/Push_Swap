@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 12:20:52 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/07 18:24:30 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/09 17:46:22 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	ft_parse(int ac, char **av, t_stack *stack_a)
 	{
 		while (i < ac)
 		{
-			ft_add_back(stack_a, ft_new_e(ft_atoi(av[i++], stack_a), stack_a));
+			ft_add_back(stack_a, ft_new_e
+				(ft_atoi(av[i++], stack_a, NULL), stack_a, NULL));
 		}
 	}
 	ft_duplicate_review(stack_a);
@@ -41,11 +42,12 @@ void	ft_parse_quoted_str(char **av, t_stack *stack_a)
 	if (buffer == NULL)
 		ft_error();
 	while (buffer[i])
-		ft_add_back(stack_a, ft_new_e(ft_atoi(buffer[i++], stack_a), stack_a));
-	ft_free_split(buffer, i);
+		ft_add_back(stack_a, ft_new_e
+			(ft_atoi(buffer[i++], stack_a, buffer), stack_a, buffer));
+	ft_free_split(buffer);
 }
 
-int	ft_atoi(char *str, t_stack *stack_a)
+int	ft_atoi(char *str, t_stack *stack_a, char **buffer)
 {
 	int		i;
 	int		sign;
@@ -65,11 +67,11 @@ int	ft_atoi(char *str, t_stack *stack_a)
 	while (str[i])
 	{
 		if (str[i] < '0' || str[i] > '9')
-			return (ft_free(stack_a), ft_error(), 0);
+			return (ft_free(stack_a, buffer), ft_error(), 0);
 		res = res * 10 + str[i++] - '0';
 	}
 	if ((sign * res) > 2147483647 || (sign * res) < -2147483648)
-		return (ft_free(stack_a), ft_error(), 0);
+		return (ft_free(stack_a, buffer), ft_error(), 0);
 	return (sign * res);
 }
 
@@ -88,7 +90,7 @@ void	ft_duplicate_review(t_stack *stack_a)
 		{
 			if (tmp->value == head->value)
 			{
-				ft_free(stack_a);
+				ft_free(stack_a, NULL);
 				ft_error();
 			}
 			tmp = (*tmp).next;
@@ -96,15 +98,4 @@ void	ft_duplicate_review(t_stack *stack_a)
 		head = head->next;
 		i++;
 	}
-}
-
-void	**ft_free_split(char **split, int pos)
-{
-	while (pos >= 0)
-	{
-		free(split[pos]);
-		pos--;
-	}
-	free(split);
-	return (NULL);
 }
