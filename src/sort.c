@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 05:24:29 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/07 18:25:59 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/10 14:02:29 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	ft_sort(t_stack *stack_a, t_stack *stack_b)
 		sa(stack_a, 1);
 	else if (stack_a->size == 3)
 		ft_sort_three_elem(stack_a);
+	else if (stack_a->size <= 5)
+		ft_sort_five_elem(stack_a, stack_b);
 	else if (stack_a->size > 3)
 		ft_sort_large(stack_a, stack_b);
 }

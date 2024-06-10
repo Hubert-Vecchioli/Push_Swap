@@ -3,17 +3,15 @@ SRC 			= stack_actions.c sort_large_utils.c sort_large.c sort.c parsing.c move_s
 MAIN			= ./src/main.c
 SRCS_DIR 		= ./src/
 SRCS 			= $(addprefix $(SRCS_DIR), $(SRC))
-
 OBJS			=  ${SRCS:.c=.o}
 MAIN_OBJS		=  ${MAIN:.c=.o}
+NAME 			= push_swap
 
 CHECKER_SRC		= checker.c get_next_line.c get_next_line_utils.c
 CHECKER_DIR		= ./checker_folder/
 CHECKER			= $(addprefix $(CHECKER_DIR), $(CHECKER_SRC))
 CHECKER_OBJS	=  ${CHECKER:.c=.o}
-NAME_CHECKER	= ./checker
-
-NAME = push_swap
+NAME_CHECKER	= checker
 
 all : ${NAME}
 
@@ -21,10 +19,10 @@ all : ${NAME}
 	cc -Wall -Wextra -Werror -I ./include/ -c $< -o ${<:.c=.o}
 
 ${NAME} : $(OBJS) $(MAIN_OBJS)
-	cc -Wall -Wextra -Werror -o ${NAME} $(OBJS) $(MAIN_OBJS)
+	cc -Wall -Wextra -Werror $(OBJS) $(MAIN_OBJS) -o ${NAME}
 
 bonus : $(OBJS) $(CHECKER_OBJS)
-	cc -Wall -Wextra -Werror -I ./include/ $(OBJS) $(CHECKER_OBJS) -o $(NAME_CHECKER)
+	cc -Wall -Wextra -Werror $(OBJS) $(CHECKER_OBJS) -o $(NAME_CHECKER)
 
 clean :
 	rm -f ${OBJS} $(CHECKER_OBJS) $(MAIN_OBJS)

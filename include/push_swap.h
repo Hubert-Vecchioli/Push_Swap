@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:36:44 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/09 18:04:49 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/10 14:14:05 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,6 @@ void			ft_set_extrema(t_stack *stack_a);
 void			ft_best_move_back(t_stack *stack_a, t_stack *stack_b);
 void			ft_move_top_sa(t_stack *sa, t_stack_elem *cheap_e);
 void			ft_move_top_sb(t_stack *sb, t_stack_elem *cheap_e);
+void			ft_sort_five_elem(t_stack *stack_a, t_stack *stack_b);
 
 #endif

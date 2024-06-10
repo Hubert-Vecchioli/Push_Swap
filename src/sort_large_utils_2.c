@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 19:05:26 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/09 18:05:02 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/10 14:19:39 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,20 @@ void	ft_get_min_on_top(t_stack *stack_a)
 			ra(stack_a, 1);
 		else
 			rra(stack_a, 1);
+	}
+}
+
+void	ft_sort_five_elem(t_stack *stack_a, t_stack *stack_b)
+{
+	while (stack_a->size > 3)
+	{
+		ft_get_min_on_top(stack_a);
+		pb(stack_a, stack_b, 1);
+	}
+	ft_sort_three_elem(stack_a);
+	while (stack_b->size)
+	{
+		ft_get_min_on_top(stack_a);
+		pa(stack_a, stack_b, 1);
 	}
 }

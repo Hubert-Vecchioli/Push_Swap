@@ -6,7 +6,7 @@
 /*   By: hvecchio <hvecchio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 09:06:47 by hvecchio          #+#    #+#             */
-/*   Updated: 2024/06/09 18:09:34 by hvecchio         ###   ########.fr       */
+/*   Updated: 2024/06/10 13:54:43 by hvecchio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ int	main(int argc, char **argv)
 	t_stack	stack_b;
 	char	*line;
 
-	if (argc < 2)
-		return (ft_error(), 0);
+	if (argc < 2 || argv[1] == NULL || *argv[1] == 0)
+		return (0);
 	ft_stack_init(&stack_a, &stack_b);
 	ft_parse(argc, argv, &stack_a);
 	stack_a.max_size = stack_a.size;
