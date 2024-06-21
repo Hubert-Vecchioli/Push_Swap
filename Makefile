@@ -21,8 +21,10 @@ all : ${NAME}
 ${NAME} : $(OBJS) $(MAIN_OBJS)
 	cc -Wall -Wextra -Werror $(OBJS) $(MAIN_OBJS) -o ${NAME}
 
-bonus : $(OBJS) $(CHECKER_OBJS)
+$(NAME_CHECKER) : $(OBJS) $(CHECKER_OBJS)
 	cc -Wall -Wextra -Werror $(OBJS) $(CHECKER_OBJS) -o $(NAME_CHECKER)
+
+bonus : $(NAME_CHECKER)
 
 clean :
 	rm -f ${OBJS} $(CHECKER_OBJS) $(MAIN_OBJS)
@@ -32,4 +34,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re
