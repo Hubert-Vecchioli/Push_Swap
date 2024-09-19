@@ -5,3 +5,5 @@ Please refer to the project subject for more details.
 
 Use `make` to compile the program into an executable push_swap.
 Then run `./push_swap` followed by the numbers to sort.
+
+Grade - 125%
